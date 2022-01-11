@@ -33,6 +33,13 @@ namespace FXP_Statistics
             this.txtForumNum = new System.Windows.Forms.TextBox();
             this.btnGetStats = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtNumOfDays = new System.Windows.Forms.TextBox();
+            this.lblDaysGoBack = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblForumNum
@@ -64,26 +71,67 @@ namespace FXP_Statistics
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(14, 73);
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(762, 362);
+            this.txtLog.Size = new System.Drawing.Size(946, 510);
             this.txtLog.TabIndex = 3;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtNumOfDays);
+            this.splitContainer1.Panel1.Controls.Add(this.lblDaysGoBack);
+            this.splitContainer1.Panel1.Controls.Add(this.lblForumNum);
+            this.splitContainer1.Panel1.Controls.Add(this.txtForumNum);
+            this.splitContainer1.Panel1.Controls.Add(this.btnGetStats);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.txtLog);
+            this.splitContainer1.Size = new System.Drawing.Size(946, 576);
+            this.splitContainer1.SplitterDistance = 62;
+            this.splitContainer1.TabIndex = 4;
+            // 
+            // txtNumOfDays
+            // 
+            this.txtNumOfDays.Location = new System.Drawing.Point(179, 61);
+            this.txtNumOfDays.Name = "txtNumOfDays";
+            this.txtNumOfDays.Size = new System.Drawing.Size(324, 29);
+            this.txtNumOfDays.TabIndex = 4;
+            // 
+            // lblDaysGoBack
+            // 
+            this.lblDaysGoBack.AutoSize = true;
+            this.lblDaysGoBack.Location = new System.Drawing.Point(13, 63);
+            this.lblDaysGoBack.Name = "lblDaysGoBack";
+            this.lblDaysGoBack.Size = new System.Drawing.Size(160, 25);
+            this.lblDaysGoBack.TabIndex = 3;
+            this.lblDaysGoBack.Text = "Number of days: ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtLog);
-            this.Controls.Add(this.btnGetStats);
-            this.Controls.Add(this.txtForumNum);
-            this.Controls.Add(this.lblForumNum);
+            this.ClientSize = new System.Drawing.Size(946, 576);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "FXP Statistics";
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -93,6 +141,9 @@ namespace FXP_Statistics
         private System.Windows.Forms.TextBox txtForumNum;
         private System.Windows.Forms.Button btnGetStats;
         private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox txtNumOfDays;
+        private System.Windows.Forms.Label lblDaysGoBack;
     }
 }
 
