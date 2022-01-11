@@ -1,0 +1,14 @@
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\FXP Statistics.exe.config
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\FXP Statistics.exe
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\FXP Statistics.pdb
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.csprojAssemblyReference.cache
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP_Statistics.Form1.resources
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP_Statistics.Properties.Resources.resources
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.csproj.GenerateResource.cache
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.csproj.CoreCompileInputs.cache
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.csproj.CopyComplete
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.exe
+C:\Users\Zeevx\Documents\GitHub\FXP-Statistics\FXP Statistics\obj\Debug\FXP Statistics.pdb

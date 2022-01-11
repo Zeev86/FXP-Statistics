@@ -80,7 +80,6 @@ namespace FXP_Statistics
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -121,7 +120,7 @@ namespace FXP_Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 576);
+            this.ClientSize = new System.Drawing.Size(1205, 601);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "FXP Statistics";

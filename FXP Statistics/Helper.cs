@@ -14,7 +14,8 @@ namespace FXP_Statistics
         {
             if (isGUI)
             {
-                System.Windows.Forms.TextBox txtLogs = Application.OpenForms["Form1"].Controls["txtLog"] as System.Windows.Forms.TextBox;
+                SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
+                System.Windows.Forms.TextBox txtLogs = splitContainer.Panel2.Controls["txtLog"] as System.Windows.Forms.TextBox;
                 txtLogs.Text = txtLogs.Text + text;
             }
             else
@@ -23,7 +24,8 @@ namespace FXP_Statistics
 
         public void ClearTextLog()
         {
-            System.Windows.Forms.TextBox txtLogs = Application.OpenForms["Form1"].Controls["txtLog"] as System.Windows.Forms.TextBox;
+            SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
+            System.Windows.Forms.TextBox txtLogs = splitContainer.Panel2.Controls["txtLog"] as System.Windows.Forms.TextBox;
             txtLogs.Text = "";
         }
 
@@ -31,9 +33,23 @@ namespace FXP_Statistics
         {
             if (isGUI)
             {
-                System.Windows.Forms.Button btnGetStats = Application.OpenForms["Form1"].Controls["btnGetStats"] as System.Windows.Forms.Button;
+                SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
+                System.Windows.Forms.Button btnGetStats = splitContainer.Panel1.Controls["btnGetStats"] as System.Windows.Forms.Button;
                 btnGetStats.Enabled = true;
             }
+        }
+
+        public int GetNumberOfDays()
+        {
+            int numberOfDays = 7;
+            if (isGUI)
+            {
+                SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
+                System.Windows.Forms.TextBox txtNumberOfDays = splitContainer.Panel1.Controls["txtNumOfDays"] as System.Windows.Forms.TextBox;
+                Int32.TryParse(txtNumberOfDays.Text, out numberOfDays);
+                return numberOfDays;
+            }
+            return numberOfDays;
         }
     }
 }

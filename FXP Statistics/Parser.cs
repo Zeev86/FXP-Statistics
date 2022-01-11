@@ -21,16 +21,22 @@ namespace FXP_Statistics
         {
             if (isGUI)
             {
+                daysToGoBack = helper.GetNumberOfDays();
                 helper.isGUI = true;
                 helper.ClearTextLog();
             }
             else
+            {
+                Int32.TryParse(Console.ReadLine(), out daysToGoBack);
                 helper.isGUI = false;
+            }
+
+            helper.AddTextLog(string.Concat("Going to look for ", daysToGoBack, " days"));
 
             if (!generalConfig.StopGettingInfo)
             {
                 DateTime now = DateTime.Now;
-                DateTime daysDiff = now.AddDays(daysToGoBack);
+                DateTime daysDiff = now.AddDays(0 - daysToGoBack);
                 var url = string.Concat(constants.SitePath, constants.ForumDisplay);
 
                 if (forumPage == 1)
@@ -139,7 +145,7 @@ namespace FXP_Statistics
                     {
                         bool isDateInRange = false;
                         DateTime postDate = DateTime.Parse(parsedDate);
-                        isDateInRange = postDate > DateTime.Now.AddDays(daysToGoBack);
+                        isDateInRange = postDate > DateTime.Now.AddDays(0 - daysToGoBack);
                         if (isDateInRange)
                             shouldSkipPost = false;
                     }
