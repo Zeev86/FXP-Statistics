@@ -11,6 +11,7 @@ namespace FXP_Statistics_Console
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.GetEncoding("Windows-1255");
             Parser parser = new FXP_Statistics.Parser();
             parser.isGUI = false;
             parser.GetForumThreads(Convert.ToString(10122), 1);
