@@ -75,11 +75,12 @@ namespace FXP_Statistics
             this.txtLog.Location = new System.Drawing.Point(0, 0);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(946, 510);
+            this.txtLog.Size = new System.Drawing.Size(1205, 535);
             this.txtLog.TabIndex = 3;
             // 
             // splitContainer1
             // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -96,7 +97,7 @@ namespace FXP_Statistics
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.txtLog);
-            this.splitContainer1.Size = new System.Drawing.Size(946, 576);
+            this.splitContainer1.Size = new System.Drawing.Size(1205, 601);
             this.splitContainer1.SplitterDistance = 62;
             this.splitContainer1.TabIndex = 4;
             // 
