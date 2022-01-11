@@ -115,7 +115,6 @@ jobs:
         path: ${{ env.Wap_Project_Directory }}\AppPackages
         
     - name: Wrap
-        run:
         echo "Copy directory structure from 'in' to 'out':";
         find ./in -type d | while read i;
         do
