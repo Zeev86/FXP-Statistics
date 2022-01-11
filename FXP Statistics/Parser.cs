@@ -27,7 +27,10 @@ namespace FXP_Statistics
             }
             else
             {
+                Console.WriteLine("Please type number of days to get statistics: ");
                 Int32.TryParse(Console.ReadLine(), out daysToGoBack);
+                if (daysToGoBack < 1 || daysToGoBack >= 7)
+                    daysToGoBack = 7;
                 helper.isGUI = false;
             }
 
