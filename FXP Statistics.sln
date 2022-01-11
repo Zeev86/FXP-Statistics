@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FXP Statistics", "FXP Statistics\FXP Statistics.csproj", "{00037860-2B8A-4EDA-BD1F-61D629F1E384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FXP Statistics Console", "FXP Statistics Console\FXP Statistics Console.csproj", "{AF21CDFF-BCF4-48D8-971C-4BEA1E642693}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00037860-2B8A-4EDA-BD1F-61D629F1E384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00037860-2B8A-4EDA-BD1F-61D629F1E384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00037860-2B8A-4EDA-BD1F-61D629F1E384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00037860-2B8A-4EDA-BD1F-61D629F1E384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF21CDFF-BCF4-48D8-971C-4BEA1E642693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF21CDFF-BCF4-48D8-971C-4BEA1E642693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF21CDFF-BCF4-48D8-971C-4BEA1E642693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF21CDFF-BCF4-48D8-971C-4BEA1E642693}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50F661F6-324A-4B91-A830-38F65DFD3911}
+	EndGlobalSection
+EndGlobal
