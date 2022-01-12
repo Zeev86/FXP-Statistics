@@ -18,8 +18,10 @@ namespace FXP_Statistics
         }
         public class Threads
         {
+            public string ThreadTitle { get; set; }
             public string ThreadUrl { get; set; }
             public string ThreadDate { get; set; }
+            public int ThreadScore { get; set; }
         }
 
         public class Users

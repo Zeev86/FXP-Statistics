@@ -12,6 +12,7 @@ namespace FXP_Statistics
     {
         private static SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
         WebBrowser webBrowser = splitContainer.Panel2.Controls["wb"] as WebBrowser;
+        public static DateTime startDate, endDate;
         string htmlBuilder = "";
         public void BuildReport()
         {
@@ -23,6 +24,7 @@ namespace FXP_Statistics
             List<Configuration.Users> SortedUserList = Parser.users.OrderByDescending(u => u.UserMsgCount).ToList();
 
             htmlBuilder = "<html><head><META charset=\"utf-8\"></head><title>Statistics Report</title><body>";
+            htmlBuilder = htmlBuilder + "Report from " + startDate + " till date " + endDate + "<br><br>";
             htmlBuilder = htmlBuilder + "<table width=90% border=0><tr>" +
                 "<td width=20%><b>User</b></td><td><b>Messages</b></td><td><b>Threads</b></td>" + 
                 "<td><b>Long messages</b></td><td><b>Bad Reputation</b></td><td width=50%><b>Score</b></td></tr>";
@@ -54,6 +56,16 @@ namespace FXP_Statistics
             htmlBuilder = htmlBuilder + "</td></tr>" +
                 "</table>";
 
+            htmlBuilder = htmlBuilder + "<br><br><table width=90%><tr><td width=40%><b>Title</b></td><td width=20%><b>ThreadId</b></td><td width=20%><b>Thread Score<b>" + 
+                "</td><td width=20%><b>Thread Date</b></td></tr>";
+
+            List<Configuration.Threads> SortedThreadList = Parser.threads.OrderByDescending(t => t.ThreadScore).ToList();
+
+            for (int z=0; z < SortedThreadList.Count; z++)
+            {
+                htmlBuilder = htmlBuilder + string.Concat("<tr><td>", SortedThreadList[z].ThreadTitle, "</td><td>", SortedThreadList[z].ThreadUrl, "</td><td>", SortedThreadList[z].ThreadScore, "</td><td> | ", SortedThreadList[z].ThreadDate, "</td></tr>");
+            }
+                
             SaveReport();
         }
         private void SaveReport()

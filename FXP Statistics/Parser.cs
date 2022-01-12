@@ -65,10 +65,14 @@ namespace FXP_Statistics
                         continue;
                     var lastLine = forumPageContents[i].Split('\n').Last();
                     var threadUrlSearch = Regex.Match(forumPageContents[i], constants.RgxUrlSearch).Groups[1].Value;
-                    
+                    string rgxTitleSearch = threadUrlSearch;
+                    rgxTitleSearch = rgxTitleSearch.Replace("showthread.php?t=", "");
+                    rgxTitleSearch = string.Concat("id=\"thread_title_", rgxTitleSearch, "(.+?)</a>");
+                    string threadTitleSearch = Regex.Match(forumPageContents[i], rgxTitleSearch).Groups[1].Value;
+                    threadTitleSearch = threadTitleSearch.Replace("\">", "");
                     var threadDateSearch = Regex.Match(lastLine, constants.RgxDateSearch, RegexOptions.Singleline).Groups[1].Value;
                     if ((!string.IsNullOrEmpty(threadUrlSearch)) && (!string.IsNullOrEmpty(threadDateSearch)))
-                        threads.Add(new Configuration.Threads { ThreadUrl = threadUrlSearch, ThreadDate = threadDateSearch });
+                        threads.Add(new Configuration.Threads { ThreadTitle = threadTitleSearch, ThreadUrl = threadUrlSearch, ThreadDate = threadDateSearch, ThreadScore = 0 });
 
                     if (threadDateSearch != constants.DateToday && threadDateSearch != constants.DateYesterday)
                     {
@@ -107,6 +111,8 @@ namespace FXP_Statistics
                 }
                 generalConfig.StopGettingInfo = true;
 
+                Report.startDate = now;
+                Report.endDate = daysDiff;
                 Report report = new Report();
                 report.BuildReport();
 
@@ -122,6 +128,7 @@ namespace FXP_Statistics
         {
             if (!generalConfig.StopGettingInfo)
             {
+                int totalMsgsInThreadPage = 0, totalLongMsgsInThreadPage = 0;
                 var url = constants.SitePath;
                 Console.WriteLine("Getting information from thread id:" + threadId);
 
@@ -201,13 +208,18 @@ namespace FXP_Statistics
                                     Console.WriteLine("User " + userSearch + " has opened this thread, award 2 points");
                                     threadInc++;
                                     msgInc++;
+                                    totalMsgsInThreadPage++;
                                 }
                                 else
                                 {
                                     msgInc++;
+                                    totalMsgsInThreadPage++;
                                 }
                                 if (isLongMsg)
+                                {
                                     longMsg++;
+                                    totalLongMsgsInThreadPage++;
+                                }
 
                                 users.Add(new Configuration.Users { UserName = userSearch, UserMsgCount = msgInc, UserThreadCount = threadInc, UserLongMsgCount = longMsg, UserBadRepCount = badRepCount });
                             }
@@ -222,17 +234,22 @@ namespace FXP_Statistics
                                 var usrBadRepCount = users[indexOfUserName].UserBadRepCount;
 
                                 if (isLongMsg)
+                                {
                                     usrLongMsgCount++;
+                                    totalLongMsgsInThreadPage++;
+                                }
 
                                 if (i == 0)
                                 {
                                     usrThreadCount++;
                                     usrMsgCount++;
+                                    totalMsgsInThreadPage++;
                                     Console.WriteLine("User " + userSearch + " that was already added has opened this thread, award 2 points");
                                 }
                                 else
                                 {
                                     usrMsgCount++;
+                                    totalMsgsInThreadPage++;
                                 }
                                 users[indexOfUserName].UserMsgCount = usrMsgCount;
                                 users[indexOfUserName].UserThreadCount = usrThreadCount;
@@ -250,6 +267,11 @@ namespace FXP_Statistics
                     Console.WriteLine("Getting into the next thread page");
                     GetThreadDetails(threadId, generalConfig.IntThreadPageIncremental);
                 }
+
+                // Thread statistics
+                int indexOfThread = threads.FindIndex(indx => indx.ThreadUrl == threadId);
+                Console.WriteLine("Adding to thread " + threadId + " total messages in page: " + totalMsgsInThreadPage + ", total long messages in page: " + totalLongMsgsInThreadPage + ", total thread score is: " + threads[indexOfThread].ThreadScore);
+                threads[indexOfThread].ThreadScore = threads[indexOfThread].ThreadScore + totalMsgsInThreadPage + totalLongMsgsInThreadPage;
             }
         }
     }
