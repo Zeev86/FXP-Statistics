@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FXP_Statistics
 {
@@ -17,6 +18,8 @@ namespace FXP_Statistics
         public static List<Configuration.Threads> threads = new List<Configuration.Threads>();
         public static List<Configuration.Users> users = new List<Configuration.Users>();
         private static int daysToGoBack = generalConfig.DaysToGoBack;
+        public static string reportName = "";
+
         public void GetForumThreads(string forumId, int forumPage)
         {
             if (isGUI)
@@ -106,6 +109,10 @@ namespace FXP_Statistics
 
                 Report report = new Report();
                 report.BuildReport();
+
+                SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
+                WebBrowser webBrowser = splitContainer.Panel2.Controls["wb"] as WebBrowser;
+                webBrowser.Url = new Uri(String.Format("file:///{0}/{1}", Application.StartupPath, reportName));
 
                 helper.EnableGetStatsButton();
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace FXP_Statistics
     {
         private static SplitContainer splitContainer = (SplitContainer)Application.OpenForms["Form1"].Controls["splitContainer1"];
         WebBrowser webBrowser = splitContainer.Panel2.Controls["wb"] as WebBrowser;
+        string htmlBuilder = "";
         public void BuildReport()
         {
             PopulateTable();
@@ -20,7 +22,7 @@ namespace FXP_Statistics
         {
             List<Configuration.Users> SortedUserList = Parser.users.OrderByDescending(u => u.UserMsgCount).ToList();
 
-            string htmlBuilder = "<html><title>Statistics Report</title><body>";
+            htmlBuilder = "<html><head><META charset=\"utf-8\"></head><title>Statistics Report</title><body>";
             htmlBuilder = htmlBuilder + "<table width=90% border=0><tr>" +
                 "<td width=20%><b>User</b></td><td><b>Messages</b></td><td><b>Threads</b></td>" + 
                 "<td><b>Long messages</b></td><td><b>Bad Reputation</b></td><td width=50%><b>Score</b></td></tr>";
@@ -52,7 +54,13 @@ namespace FXP_Statistics
             htmlBuilder = htmlBuilder + "</td></tr>" +
                 "</table>";
 
-            webBrowser.DocumentText = htmlBuilder;
+            SaveReport();
+        }
+        private void SaveReport()
+        {
+            DateTime dateNow = DateTime.Now;
+            Parser.reportName = string.Concat("Report_", dateNow.Day, dateNow.Month, dateNow.Year, "_", dateNow.Hour, dateNow.Minute, ".html");
+            File.WriteAllText(string.Concat(Application.StartupPath, "\\", Parser.reportName), htmlBuilder);
         }
     }
 }
