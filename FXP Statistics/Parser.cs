@@ -103,6 +103,10 @@ namespace FXP_Statistics
                     helper.AddTextLog(SortedUserList[k].UserName + constants.TextTabs + SortedUserList[k].UserMsgCount + guiNewLine);
                 }
                 generalConfig.StopGettingInfo = true;
+
+                Report report = new Report();
+                report.BuildReport();
+
                 helper.EnableGetStatsButton();
             }
         }
@@ -139,12 +143,32 @@ namespace FXP_Statistics
                 Console.WriteLine("Pages number is: " + numOfPages);
 
                 bool shouldSkipPost = true;
+                Cencor cencor = new Cencor();
 
                 for (int i = 0; i < userList.Count; i++)
                 {
+                    bool isLongMsg = false;
+                    bool isBadRep = false;
+
                     var lastLine = userList[i].Split('\n').Last();
                     var userSearch = Regex.Match(userList[i], constants.RgxUserName).Groups[1].Value;
                     var parsedDate = Regex.Match(userList[i], constants.RgxParsedDate).Groups[1].Value;
+                    var userMsgSearch = Regex.Match(userList[i], constants.RgxUserMsgSearch, RegexOptions.Singleline);
+                    string userMsg = userMsgSearch.ToString();
+                    userMsg = userMsg.Replace("postcontent restore", "");
+                    userMsg = userMsg.Replace("</blockquote>", "");
+                    userMsg = userMsg.Replace("itemprop=\"articleBody\">", "");
+                    if (userMsg.Length > 1000)
+                    {
+                        isLongMsg = true;
+                        Console.WriteLine("User " + userSearch + " have a long message");
+                    }
+                    isBadRep = cencor.cencorList.Any(userMsg.Contains);
+                    if(isBadRep)
+                    {
+                        Console.WriteLine("User cursed, adding to bad rep");
+                    }
+
                     parsedDate = parsedDate.Replace(constants.NewLine, " ");
                     if (!parsedDate.Contains(constants.DateToday) && !parsedDate.Contains(constants.DateYesterday))
                     {
@@ -163,31 +187,50 @@ namespace FXP_Statistics
                         {
                             if (!users.Any(usr => usr.UserName == userSearch))
                             {
-                                int msgInc = 0;
+                                int msgInc = 0, threadInc = 0, longMsg = 0, badRepCount = 0;
                                 Console.WriteLine("User found " + userSearch);
                                 if (i == 0)
                                 {
                                     Console.WriteLine("User " + userSearch + " has opened this thread, award 2 points");
-                                    msgInc = 2;
+                                    threadInc++;
+                                    msgInc++;
                                 }
                                 else
-                                    msgInc = 1;
+                                {
+                                    msgInc++;
+                                }
+                                if (isLongMsg)
+                                    longMsg++;
 
-                                users.Add(new Configuration.Users { UserName = userSearch, UserMsgCount = msgInc });
+                                users.Add(new Configuration.Users { UserName = userSearch, UserMsgCount = msgInc, UserThreadCount = threadInc, UserLongMsgCount = longMsg, UserBadRepCount = badRepCount });
                             }
                             else
                             {
                                 Console.WriteLine("User " + userSearch + " already exists, inc msg count");
                                 int indexOfUserName = users.FindIndex(indx => indx.UserName == userSearch);
+
                                 var usrMsgCount = users[indexOfUserName].UserMsgCount;
+                                var usrThreadCount = users[indexOfUserName].UserThreadCount;
+                                var usrLongMsgCount = users[indexOfUserName].UserLongMsgCount;
+                                var usrBadRepCount = users[indexOfUserName].UserBadRepCount;
+
+                                if (isLongMsg)
+                                    usrLongMsgCount++;
+
                                 if (i == 0)
                                 {
+                                    usrThreadCount++;
+                                    usrMsgCount++;
                                     Console.WriteLine("User " + userSearch + " that was already added has opened this thread, award 2 points");
-                                    usrMsgCount = usrMsgCount + 2;
                                 }
                                 else
+                                {
                                     usrMsgCount++;
+                                }
                                 users[indexOfUserName].UserMsgCount = usrMsgCount;
+                                users[indexOfUserName].UserThreadCount = usrThreadCount;
+                                users[indexOfUserName].UserLongMsgCount = usrLongMsgCount;
+                                users[indexOfUserName].UserBadRepCount = usrBadRepCount;
                             }
                         }
                     }

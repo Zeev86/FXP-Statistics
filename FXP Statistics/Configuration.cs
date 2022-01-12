@@ -26,6 +26,9 @@ namespace FXP_Statistics
         {
             public string UserName { get; set; }
             public int UserMsgCount { get; set; }
+            public int UserThreadCount { get; set; }
+            public int UserLongMsgCount { get; set; }
+            public int UserBadRepCount { get; set; }
         }
     }
 }

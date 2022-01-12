@@ -30,6 +30,7 @@ namespace FXP_Statistics
         public string RgxUrlSearch = "class=\"title\" href=\"(.+)\" id=";
         public string RgxDateSearch = "<dd>(.+?) <em";
         public string RgxUserSearch = "<div class=\"userinfo\"(.+?)הצג עוד";
+        public string RgxUserMsgSearch = "postcontent restore(.+?)</blockquote>";
         public string RgxPagesSearch = "class=\"first_last\"><a href=(.+)title=";
         public string RgxUserName = "הסמל האישי של(.+)\"";
         public string RgxParsedDate = "<span class=\"date\">(.+)</span>";

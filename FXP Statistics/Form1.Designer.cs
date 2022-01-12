@@ -36,6 +36,7 @@ namespace FXP_Statistics
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txtNumOfDays = new System.Windows.Forms.TextBox();
             this.lblDaysGoBack = new System.Windows.Forms.Label();
+            this.wb = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,6 +97,7 @@ namespace FXP_Statistics
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.wb);
             this.splitContainer1.Panel2.Controls.Add(this.txtLog);
             this.splitContainer1.Size = new System.Drawing.Size(1205, 601);
             this.splitContainer1.SplitterDistance = 62;
@@ -116,6 +118,15 @@ namespace FXP_Statistics
             this.lblDaysGoBack.Size = new System.Drawing.Size(160, 25);
             this.lblDaysGoBack.TabIndex = 3;
             this.lblDaysGoBack.Text = "Number of days: ";
+            // 
+            // wb
+            // 
+            this.wb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wb.Location = new System.Drawing.Point(0, 0);
+            this.wb.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wb.Name = "wb";
+            this.wb.Size = new System.Drawing.Size(1205, 535);
+            this.wb.TabIndex = 4;
             // 
             // Form1
             // 
@@ -144,6 +155,7 @@ namespace FXP_Statistics
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox txtNumOfDays;
         private System.Windows.Forms.Label lblDaysGoBack;
+        private System.Windows.Forms.WebBrowser wb;
     }
 }
 
